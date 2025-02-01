@@ -8,16 +8,20 @@ app = FastAPI()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all domains (adjust as needed)
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-@app.get("/api/info", response_model=dict)  # Ensure JSON response
+@app.get("/api/info", response_model=dict)
 def get_info():
     return {
         "email": "ibrahimakinyemi@gmail.com",
         "timestamp": datetime.now(pytz.UTC).isoformat(),
         "github_url": "https://github.com/yourusername/project-repo"
     }
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to my FastAPI app!"}
