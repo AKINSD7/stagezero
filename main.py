@@ -1,4 +1,3 @@
-import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
@@ -15,14 +14,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/info")
+@app.get("/api/info", response_model=dict, status_code=200)
 def get_info():
     return {
         "email": "ibrahimakinyemi@gmail.com",
-        "timestamp": datetime.now(pytz.UTC).isoformat(),
+        "current_datetime": datetime.now(pytz.UTC).isoformat(),  # ISO 8601 UTC format
         "github_url": "https://github.com/yourusername/project-repo"
     }
 
-@app.get("/")
+@app.get("/", status_code=200)
 def read_root():
     return {"message": "Welcome to my FastAPI app!"}
