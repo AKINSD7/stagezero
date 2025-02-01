@@ -18,8 +18,8 @@ app.add_middleware(
 def get_info():
     return {
         "email": "ibrahimakinyemi@gmail.com",
-        "current_datetime": datetime.now(pytz.UTC).isoformat(),  # ISO 8601 UTC format
-        "github_url": "https://github.com/yourusername/project-repo"
+        "current_datetime": datetime.now(pytz.UTC).isoformat(),
+        "github_url": "https://github.com/AKINSD7/stagezero.git"
     }
 
 @app.get("/", status_code=200)
