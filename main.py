@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
@@ -14,12 +15,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/info", response_model=dict)
+# Fetch environment variables
+SECRET_KEY = os.getenv("SECRET_KEY", "default-secret")  # Use default if not set
+DATABASE_URL = os.getenv("DATABASE_URL", "")
+
+@app.get("/api/info")
 def get_info():
     return {
         "email": "ibrahimakinyemi@gmail.com",
         "timestamp": datetime.now(pytz.UTC).isoformat(),
-        "github_url": "https://github.com/yourusername/project-repo"
+        "github_url": "https://github.com/yourusername/project-repo",
+        "secret_key": SECRET_KEY  # For testing (remove in production)
     }
 
 @app.get("/")
