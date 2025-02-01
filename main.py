@@ -15,17 +15,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Fetch environment variables
-SECRET_KEY = os.getenv("SECRET_KEY", "default-secret")  # Use default if not set
-DATABASE_URL = os.getenv("DATABASE_URL", "")
-
 @app.get("/api/info")
 def get_info():
     return {
         "email": "ibrahimakinyemi@gmail.com",
         "timestamp": datetime.now(pytz.UTC).isoformat(),
-        "github_url": "https://github.com/yourusername/project-repo",
-        "secret_key": SECRET_KEY  # For testing (remove in production)
+        "github_url": "https://github.com/yourusername/project-repo"
     }
 
 @app.get("/")
